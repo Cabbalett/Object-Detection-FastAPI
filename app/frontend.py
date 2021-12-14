@@ -13,7 +13,12 @@ def main():
     st.title("My CV Project")
 
     st.subheader("Object Detection task with Faster RCNN model pretrained with COCO Dataset")
-
+    cmd = 'wget https://download.openmmlab.com/mmdetection/v2.0/faster_rcnn/faster_rcnn_r50_fpn_1x_coco/faster_rcnn_r50_fpn_1x_coco_20200130-047c8118.pth'
+    # Specify the path to model config and checkpoint file
+    if not os.path.isfile('faster_rcnn_r50_fpn_1x_coco_20200130-047c8118.pth'):
+        with st.spinner("Downloading model parameters... It might take up to a minute"):
+            os.system(cmd)
+            
     uploaded_file = st.file_uploader("Choose an image", type=["jpg", "jpeg","png"])
 
     if uploaded_file:
